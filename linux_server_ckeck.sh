@@ -1,9 +1,16 @@
 ############################
 #!/bin/bash
+############################
 SCRIPTNAME="Linux Server Check"
+#Description: Show information about the Server and check some things
 SCRIPTVERSION="0.13.6"
 SCRIPTDATE="2023 04 13"
-#Author: https://github.com/thallmann
+#Author:      https://github.com/thallmann
+#Maintenance: https://github.com/thallmann
+############################
+#Usage:
+#   $bash linux_server_check.sh
+############################
 
 #Variables#
 MESSAGE="=============================================================================
