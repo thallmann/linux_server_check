@@ -3,7 +3,7 @@
 ############################
 SCRIPTNAME="Linux Server Check"
 #Description: Show information about the Server and check some things
-SCRIPTVERSION="0.13.7"
+SCRIPTVERSION="0.14.7"
 SCRIPTDATE="2023 04 13"
 #Author:      https://github.com/thallmann
 #Maintenance: https://github.com/thallmann
@@ -258,6 +258,11 @@ fi
 
 #Website Check#
 #Hosted Websites
+if [$INST_APACHE -eq 1]; then
+    echo " "
+    echo -e "$FGCYAN"Hosted apache websites:"$COLORRESET"
+    apache2ctl -S | grep -E '^.*\s+.*\s+\(.*\)$' | awk '{print $4}' | sort | uniq | grep -v '[0-9]'
+fi
 
 #Certificate Check#
 
@@ -273,6 +278,9 @@ echo -e "$FGCYAN"Logged in users:"$COLORRESET"
 who
 
 #Last Login attempts#
+echo " "
+echo -e "$FGCYAN"Last login attempts:"$COLORRESET"
+lastb
 
 #McAfee#
 
