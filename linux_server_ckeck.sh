@@ -3,7 +3,7 @@
 ############################
 SCRIPTNAME="Linux Server Check"
 #Description: Show information about the Server and check some things
-SCRIPTVERSION="0.13.6"
+SCRIPTVERSION="0.13.7"
 SCRIPTDATE="2023 04 13"
 #Author:      https://github.com/thallmann
 #Maintenance: https://github.com/thallmann
@@ -16,12 +16,12 @@ SCRIPTDATE="2023 04 13"
 MESSAGE="=============================================================================
                         $SCRIPTNAME
                         Script Version: $SCRIPTVERSION
-                        Script Date: $SCRIPTDATE
+                        Script Date:    $SCRIPTDATE
 ============================================================================="
 HOSTNAME=$(hostname)
 DATE=$(date +"%y%m%d")
 TIME=$(date +"%H%M")
-LOGNAME="ritsc_"$HOSTNAME"_"$DATE"_"$TIME".log"
+LOGNAME="lsc_"$HOSTNAME"_"$DATE"_"$TIME".log"
 LOGPATH="/var/log/$LOGNAME"
 UPTIME=$(uptime | awk '{print $3,$4}')
 UPTIMENUM=$(uptime | awk '{print $3}')
@@ -61,7 +61,7 @@ touch $LOGPATH
 #Message#
 echo "$MESSAGE"
 echo " "
-echo "Logfile:                $LOGPATH"
+echo -e "$FGCYAN"Logfile:"$COLORRESET                $LOGPATH"
 echo " "
 
 ############################
@@ -69,7 +69,7 @@ echo " "
 ############################
 
 #Servername#
-echo "Hostname:               $HOSTNAME"
+echo -e "$FGCYAN"Hostname:"$COLORRESET               $HOSTNAME"
 
 #OS Version#
 
@@ -97,22 +97,21 @@ else
     OSVER=$(uname -r)
 fi
 
-echo "OS:                     $OS $OSVER"
-#echo "Version:                $OSVER"
+echo -e "$FGCYAN"OS:"$COLORRESET                     $OS $OSVER"
 
 #Uptime#
 
 if [ $UPTIMENUM -lt 30 ]; then
-    echo -e "Uptime:                $FGGREEN $UPTIME $COLORRESET" #uptime <30 days green
+    echo -e "$FGCYAN"Uptime:"$COLORRESET                $FGGREEN $UPTIME $COLORRESET" #uptime <30 days green
 elif [ $UPTIMENUM -ge 60 ]; then
-    echo -e "Uptime:                $FGRED $UPTIME $COLORRESET" #uptime >=60 days red
+    echo -e "$FGCYAN"Uptime:"$COLORRESET                $FGRED $UPTIME $COLORRESET" #uptime >=60 days red
 else
-    echo -e "Uptime:                $FGYELLOW $UPTIME $COLORRESET" #uptime 30-59 days yellow
+    echo -e "$FGCYAN"Uptime:"$COLORRESET                $FGYELLOW $UPTIME $COLORRESET" #uptime 30-59 days yellow
 fi 
 
 #Package updates#
 UPDATESNUM=$(zypper --non-interactive list-updates | grep "v |" | wc -l)
-echo "Package updates         $UPDATESNUM"
+echo -e "$FGCYAN"Package updates:"$COLORRESET        $UPDATESNUM"
 
 ############################
 #Network Check#
@@ -122,14 +121,14 @@ echo "Package updates         $UPDATESNUM"
 #Internal IP
 
 INTERNAL_IP=$(ip addr show | grep 'inet ' | awk '{print $2}')
-echo "Server IP addresses:          $INTERNAL_IP"
-
+echo -e "$FGCYAN"Server IP addresses:"$COLORRESET"
+echo $INTERNAL_IP
 #External IP
 
 #Network Connection#
 #Internet Connection
 
-ping -c 1 google.com &> /dev/null && echo -e "Internet connection:    $FGGREEN Connected $COLORRESET" || echo -e "Internet connection:   $FGRED Disconnected $COLORRESET"
+ping -c 1 google.com &> /dev/null && echo -e "$FGCYAN"Internet connection:"$COLORRESET    $FGGREEN Connected $COLORRESET" || echo -e "Internet connection:   $FGRED Disconnected $COLORRESET"
 
 #LAN Connection
 
@@ -137,7 +136,7 @@ ping -c 1 google.com &> /dev/null && echo -e "Internet connection:    $FGGREEN C
 
 NAMESERVERS=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
 echo " "
-echo "Active Nameservers:"
+echo -e "$FGCYAN"Active Nameservers:"$COLORRESET"
 echo $NAMESERVERS
 
 #Ports#
@@ -148,7 +147,7 @@ netstat -tulpn
 #NTP#
 
 echo " "
-echo "NTP Servers:"
+echo -e "$FGCYAN"NTP Servers:"$COLORRESET"
 chronyc sources
 
 ############################
@@ -193,7 +192,7 @@ fi
 
 BIG_LOGS=$(find /var/log -name "*.log")
 echo " "
-echo "Biggest Logfiles:"
+echo -e "$FGCYAN"Biggest Logfiles:"$COLORRESET"
 ls -lhS $BIG_LOGS | head -n 5
 
 #no logrotate?
@@ -270,8 +269,7 @@ fi
 ############################
 #Logged in Users#
 echo " "
-echo "Logged in users:"
-echo " "
+echo -e "$FGCYAN"Logged in users:"$COLORRESET"
 who
 
 #Last Login attempts#
