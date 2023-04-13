@@ -3,7 +3,7 @@
 ############################
 SCRIPTNAME="Linux Server Check"
 #Description: Show information about the Server and check some things
-SCRIPTVERSION="0.14.7"
+SCRIPTVERSION="0.14.0"
 SCRIPTDATE="2023 04 13"
 #Author:      https://github.com/thallmann
 #Maintenance: https://github.com/thallmann
