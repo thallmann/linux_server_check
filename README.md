@@ -20,7 +20,9 @@ Currently the following things are going to be checked:
 - Failed services
 - Top 5 biggest logfiles
 - Check for installation of some services
+- Hosted apache websites
 - Logged in users
+- Last login attempts
 
 # Usage
 
