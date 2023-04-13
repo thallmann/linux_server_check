@@ -1,19 +1,9 @@
 ############################
 #!/bin/bash
 SCRIPTNAME="Linux Server Check"
-SCRIPTVERSION="0.13.5"
-SCRIPTDATE="2023 03 30"
+SCRIPTVERSION="0.13.6"
+SCRIPTDATE="2023 04 13"
 #Author: https://github.com/thallmann
-
-#Ressources:
-# https://github.com/atarallo/TECMINT_MONITOR/blob/master/tecmint_monitor.sh
-# https://linuxopsys.com/topics/shell-script-check-linux-system-health
-# https://linuxconfig.org/bash-script-flags-usage-with-arguments-examples
-# https://www.banjocode.com/post/bash/flags-bash
-# https://github.com/SimplyLinuxFAQ/health-check-script
-# https://github.com/ruanyf/simple-bash-scripts/blob/master/scripts/server-health.sh
-#
-############################
 
 #Variables#
 MESSAGE="=============================================================================
