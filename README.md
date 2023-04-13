@@ -27,7 +27,8 @@ Currently the following things are going to be checked:
 To execute the script please read its content, using your prefered editor, and then 
 
 ```
-$ bash linux_server_check.sh 
+$ git clone https://github.com/thallmann/linux_server_check
+$ bash ./linux_server_check/linux_server_check.sh 
 ```
 
 # Compatibility
