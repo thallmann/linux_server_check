@@ -5,7 +5,7 @@ Linux Server Check Bash-Script
 For any suggestions or bugs, feel free to report them in the [**Issues**](https://github.com/thallmann/linux_server_check/issues)
 page.
 
-![Linux_Server_Check](./linux_server_check_v0_13_7.png?raw=true "Linux Server Check Bash-Script")
+![Linux_Server_Check](./linux_server_check_v0_13_7.png "Linux Server Check Bash-Script")
 
 Currently the following things are going to be checked:
 
